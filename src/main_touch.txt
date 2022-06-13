@@ -1,0 +1,108 @@
+#include <LGFX.hpp>
+
+LGFX lcd;
+
+void setup(void)
+{
+  lcd.init();
+  lcd.setBrightness(255);
+}
+
+static int colors[] = {TFT_RED, TFT_GREEN, TFT_BLUE, TFT_CYAN, TFT_MAGENTA, TFT_YELLOW};
+
+int i = 0;
+
+void loop(void)
+{
+  lcd.fillRect(0, 0, 320, 320, colors[i++]);
+
+  if (i > 5)
+    i = 0;
+
+  delay(2000);
+}
+
+// void setup(void)
+// {
+//   // SPIバスとパネルの初期化を実行すると使用可能になります。
+//   lcd.init();
+
+//   lcd.setTextSize((std::max(lcd.width(), lcd.height()) + 255) >> 8);
+
+//   // タッチが使用可能な場合のキャリブレーションを行います。（省略可）
+//   if (lcd.touch())
+//   {
+//     if (lcd.width() < lcd.height())
+//       lcd.setRotation(lcd.getRotation() ^ 1);
+
+//     // 画面に案内文章を描画します。
+//     lcd.setTextDatum(textdatum_t::middle_center);
+//     lcd.drawString("touch the arrow marker.", lcd.width() >> 1, lcd.height() >> 1);
+//     lcd.setTextDatum(textdatum_t::top_left);
+
+//     // タッチを使用する場合、キャリブレーションを行います。画面の四隅に表示される矢印の先端を順にタッチしてください。
+//     std::uint16_t fg = TFT_WHITE;
+//     std::uint16_t bg = TFT_BLACK;
+//     if (lcd.isEPD())
+//       std::swap(fg, bg);
+//     lcd.calibrateTouch(nullptr, fg, bg, std::max(lcd.width(), lcd.height()) >> 3);
+//   }
+
+//   lcd.fillScreen(TFT_BLACK);
+// }
+
+// uint32_t count = ~0;
+// void loop(void)
+// {
+//   lcd.startWrite();
+//   lcd.setRotation(++count & 7);
+//   lcd.setColorDepth((count & 8) ? 16 : 24);
+
+//   lcd.setTextColor(TFT_WHITE);
+//   lcd.drawNumber(lcd.getRotation(), 16, 0);
+
+//   lcd.setTextColor(0xFF0000U);
+//   lcd.drawString("R", 30, 16);
+//   lcd.setTextColor(0x00FF00U);
+//   lcd.drawString("G", 40, 16);
+//   lcd.setTextColor(0x0000FFU);
+//   lcd.drawString("B", 50, 16);
+
+//   lcd.drawRect(30, 30, lcd.width() - 60, lcd.height() - 60, count * 7);
+//   lcd.drawFastHLine(0, 0, 10);
+
+//   lcd.endWrite();
+
+//   int32_t x, y;
+//   if (lcd.getTouch(&x, &y))
+//   {
+//     lcd.fillRect(x - 2, y - 2, 5, 5, count * 7);
+//   }
+// }
+
+
+
+
+
+// calibration
+  // if (lcd.touch())
+  // {
+  //   if (lcd.width() < lcd.height())
+  //     lcd.setRotation(lcd.getRotation() ^ 1);
+
+  //   // Draw a guide text on the screen.
+  //   lcd.setTextDatum(textdatum_t::middle_center);
+  //   lcd.drawString("touch the arrow marker.", lcd.width() >> 1, lcd.height() >> 1);
+  //   lcd.setTextDatum(textdatum_t::top_left);
+
+  //   // If you use touch, calibrate. Touch the tips of the arrows displayed in the four corners of the screen in order.
+  //   uint16_t data[8];
+  //   lcd.calibrateTouch(data, TFT_WHITE, TFT_BLACK, std::max(lcd.width(), lcd.height()) >> 3);
+
+  //   Serial.print("Calibration data:\n");
+  //   for (int i = 0; i < 8; ++i)
+  //   {
+  //     Serial.printf("[%d] = %d\n", i, data[i]);
+  //   }
+  //   lcd.fillScreen(TFT_BLACK);
+  // }
