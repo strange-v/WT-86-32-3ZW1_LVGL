@@ -5,7 +5,7 @@
 LGFX lcd;
 
 static lv_disp_draw_buf_t draw_buf;
-lv_color_t *buf = (lv_color_t *)heap_caps_malloc(TFT_WIDTH * 20 * sizeof(lv_color_t), MALLOC_CAP_DMA);
+static lv_color_t *buf = (lv_color_t *)heap_caps_malloc(TFT_WIDTH * 20 * sizeof(lv_color_t), MALLOC_CAP_DMA);
 
 lv_obj_t *roller1;
 static lv_obj_t *meter;
@@ -171,8 +171,8 @@ void setup()
     lv_indev_drv_register(&indev_drv);
 
     lv_example_arc_2();
-    //lv_example_style_13();
-    //lv_example_roller_1();
+    lv_example_style_13();
+    lv_example_roller_1();
 }
 
 unsigned long timer1;
